@@ -262,6 +262,140 @@ document.addEventListener('DOMContentLoaded', function() {
         newHelpModal.style.display = 'none';
     });
     
+    // Cat Petting Mini-Game
+    const petCatBtn = document.getElementById('pet-cat-btn');
+    const catPettingGame = document.getElementById('cat-petting-game');
+    const exitPetGame = document.getElementById('exit-pet-game');
+    const petSpots = document.querySelectorAll('.pet-spot');
+    const petProgress = document.getElementById('pet-progress');
+    const petTimerValue = document.getElementById('pet-timer-value');
+    const petScoreValue = document.getElementById('pet-score-value');
+    
+    let gameTimer;
+    let gameScore = 0;
+    let gameTime = 30;
+    let gameActive = false;
+    
+    // Open the cat petting mini-game
+    petCatBtn.addEventListener('click', function() {
+        // Reset game state
+        gameScore = 0;
+        gameTime = 30;
+        gameActive = true;
+        petProgress.style.width = '0%';
+        petTimerValue.textContent = gameTime;
+        petScoreValue.textContent = gameScore;
+        
+        // Show the game modal
+        catPettingGame.classList.add('active');
+        
+        // Start the game timer
+        startGameTimer();
+        
+        // Randomize pet spot positions
+        randomizePetSpots();
+    });
+    
+    // Exit the cat petting mini-game
+    exitPetGame.addEventListener('click', function() {
+        endGame();
+    });
+    
+    // Handle pet spot clicks
+    petSpots.forEach(spot => {
+        spot.addEventListener('click', function() {
+            if (!gameActive) return;
+            
+            // Increase score
+            gameScore += 1;
+            petScoreValue.textContent = gameScore;
+            
+            // Update progress bar (max score of 50 fills the bar)
+            const progressPercent = Math.min((gameScore / 50) * 100, 100);
+            petProgress.style.width = progressPercent + '%';
+            
+            // Visual feedback
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+                
+                // Move the spot to a new position
+                randomizeSpotPosition(this);
+            }, 100);
+            
+            // Play a sound (can be added later)
+            // playPetSound();
+            
+            // If progress is 100%, end the game
+            if (progressPercent >= 100) {
+                endGame();
+            }
+        });
+    });
+    
+    // Start the game timer
+    function startGameTimer() {
+        clearInterval(gameTimer);
+        gameTimer = setInterval(function() {
+            gameTime--;
+            petTimerValue.textContent = gameTime;
+            
+            if (gameTime <= 0) {
+                endGame();
+            }
+        }, 1000);
+    }
+    
+    // End the game
+    function endGame() {
+        // Stop the timer
+        clearInterval(gameTimer);
+        gameActive = false;
+        
+        // Hide the game modal
+        catPettingGame.classList.remove('active');
+        
+        // Award Joy based on score
+        if (gameScore > 0) {
+            const joyEarned = Math.min(gameScore, 50);
+            const currentJoy = parseInt(localStorage.getItem('joyAmount') || '100');
+            const newJoy = currentJoy + joyEarned;
+            
+            // Update localStorage and display
+            localStorage.setItem('joyAmount', newJoy.toString());
+            document.querySelector('.joy-value').textContent = newJoy;
+            
+            // Show a notification (can be enhanced later)
+            alert(`You earned ${joyEarned} Joy by petting your cat!`);
+        }
+    }
+    
+    // Randomize all pet spot positions
+    function randomizePetSpots() {
+        petSpots.forEach(spot => {
+            randomizeSpotPosition(spot);
+        });
+    }
+    
+    // Randomize a single pet spot position
+    function randomizeSpotPosition(spot) {
+        const gameContainer = document.querySelector('.pet-game-container');
+        const containerWidth = gameContainer.offsetWidth;
+        const containerHeight = gameContainer.offsetHeight;
+        
+        // Keep spots within safe boundaries
+        const maxX = containerWidth - 70;
+        const maxY = containerHeight - 120;
+        const minX = 20;
+        const minY = 20;
+        
+        const randomX = Math.floor(Math.random() * (maxX - minX)) + minX;
+        const randomY = Math.floor(Math.random() * (maxY - minY)) + minY;
+        
+        spot.style.left = randomX + 'px';
+        spot.style.top = randomY + 'px';
+    }
+    
     // Main menu buttons
     document.getElementById('settings-button').addEventListener('click', () => {
         mainMenu.classList.remove('active');

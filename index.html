@@ -314,6 +314,7 @@
             </div>
             <div id="cat-container">
                 <img id="loft-cat" src="assets/characters/cat.webp" alt="Cat">
+                <button id="pet-cat-btn" class="interaction-button">Pet Cat</button>
             </div>
         </div>
         <div class="loft-floor"></div>
@@ -351,6 +352,34 @@
             </p>
             <div class="confirmation-buttons">
                 <button class="menu-button play" id="new-currency-help-ok">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cat Petting Mini-Game Modal -->
+    <div class="mini-game-modal" id="cat-petting-game">
+        <div class="mini-game-container">
+            <h3>Pet Your Cat</h3>
+            <p>Pet your cat to earn Joy! Click or tap repeatedly in the highlighted areas.</p>
+            
+            <div class="pet-game-container">
+                <img id="pet-cat-image" src="assets/characters/cat.webp" alt="Cat to pet">
+                <div class="pet-spot" id="pet-spot-1"></div>
+                <div class="pet-spot" id="pet-spot-2"></div>
+                <div class="pet-spot" id="pet-spot-3"></div>
+                
+                <div class="pet-progress-container">
+                    <div class="pet-progress-bar" id="pet-progress"></div>
+                </div>
+                
+                <div class="pet-stats">
+                    <div class="pet-timer">Time: <span id="pet-timer-value">30</span>s</div>
+                    <div class="pet-score">Joy: +<span id="pet-score-value">0</span></div>
+                </div>
+            </div>
+            
+            <div class="mini-game-buttons">
+                <button class="menu-button back" id="exit-pet-game">Exit</button>
             </div>
         </div>
     </div>
