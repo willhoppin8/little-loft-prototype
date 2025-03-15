@@ -1,0 +1,102 @@
+/* Audio settings styles */
+.slider-container {
+    margin-bottom: 1.5rem;
+}
+
+.slider-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #FFD1DC;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 0;
+    background: #444;
+    outline: none;
+    margin-bottom: 0.5rem;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 0;
+    background: #FFB7B2;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 0;
+    background: #FFB7B2;
+    cursor: pointer;
+}
+
+.volume-value {
+    font-size: 0.7rem;
+    color: #fff;
+    text-align: right;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.toggle-label {
+    font-size: 0.8rem;
+    color: #FFD1DC;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    transition: .4s;
+    border-radius: 0;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 0;
+}
+
+input:checked + .toggle-slider {
+    background-color: #FFB7B2;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+} 

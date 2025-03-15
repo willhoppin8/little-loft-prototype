@@ -1,0 +1,86 @@
+/* Pixel Icons CSS */
+.pixel-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 12px;
+    margin-bottom: 2px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Main Menu Icons */
+.pixel-icon[data-icon="home"] {
+    background-image: url('../assets/icons/home.svg');
+}
+
+.pixel-icon[data-icon="settings"] {
+    background-image: url('../assets/icons/sliders.svg');
+}
+
+/* Settings Menu Icons */
+.pixel-icon[data-icon="user"] {
+    background-image: url('../assets/icons/user.svg');
+}
+
+.pixel-icon[data-icon="users"] {
+    background-image: url('../assets/icons/users.svg');
+}
+
+.pixel-icon[data-icon="volume"] {
+    background-image: url('../assets/icons/volume.svg');
+}
+
+.pixel-icon[data-icon="arrow-left"] {
+    background-image: url('../assets/icons/arrow-left.svg');
+}
+
+/* Person Settings Icons */
+.pixel-icon[data-icon="save"] {
+    background-image: url('../assets/icons/save.svg');
+}
+
+/* Co-op Menu Icons */
+.pixel-icon[data-icon="mail"] {
+    background-image: url('../assets/icons/mail.svg');
+}
+
+.pixel-icon[data-icon="login"] {
+    background-image: url('../assets/icons/login.svg');
+}
+
+.pixel-icon[data-icon="logout"] {
+    background-image: url('../assets/icons/logout.svg');
+}
+
+/* Confirmation Dialog Icons */
+.pixel-icon[data-icon="x"] {
+    background-image: url('../assets/icons/close.svg');
+}
+
+/* Dev Controls Icons */
+.pixel-icon[data-icon="tools"] {
+    background-image: url('../assets/icons/menu.svg');
+}
+
+/* Invite Menu Icons */
+.pixel-icon[data-icon="copy"] {
+    background-image: url('../assets/icons/copy.svg');
+}
+
+/* Make icons inherit the color of their parent */
+.pixel-icon {
+    filter: invert(1); /* Make icon white */
+}
+
+.menu-button .pixel-icon {
+    filter: brightness(0); /* Make icon black for buttons */
+}
+
+/* Ensure proper sizing for all contexts */
+.menu-button.back .pixel-icon {
+    width: 16px;
+    height: 16px;
+} 

@@ -1,0 +1,537 @@
+.container {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #FFD1DC;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.menu-button {
+    padding: 1rem;
+    background-color: #B5EAD7;
+    color: #444;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 0 #95C8B2;
+    position: relative;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button:hover {
+    background-color: #C7F0E2;
+    top: -2px;
+    box-shadow: 0 6px 0 #95C8B2;
+}
+
+.menu-button:active {
+    top: 4px;
+    box-shadow: 0 0 0 #95C8B2;
+}
+
+.menu-button.play {
+    background-color: #FFB7B2;
+    box-shadow: 0 4px 0 #E5A29E;
+}
+
+.menu-button.play:hover {
+    background-color: #FFC7C2;
+    box-shadow: 0 6px 0 #E5A29E;
+}
+
+.menu-button.play:active {
+    box-shadow: 0 0 0 #E5A29E;
+}
+
+.menu-button.settings {
+    background-color: #B5EAD7;
+    box-shadow: 0 4px 0 #95C8B2;
+}
+
+.menu-button.settings:hover {
+    background-color: #C7F0E2;
+    box-shadow: 0 6px 0 #95C8B2;
+}
+
+.menu-button.settings:active {
+    box-shadow: 0 0 0 #95C8B2;
+}
+
+.menu-button.coop {
+    background-color: #C7CEEA;
+    box-shadow: 0 4px 0 #A7AEC5;
+}
+
+.menu-button.coop:hover {
+    background-color: #D7DEF5;
+    box-shadow: 0 6px 0 #A7AEC5;
+}
+
+.menu-button.coop:active {
+    box-shadow: 0 0 0 #A7AEC5;
+}
+
+.menu-button.back {
+    background-color: #FFDAC1;
+    box-shadow: 0 4px 0 #E5C4AD;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.menu-button.back:hover {
+    background-color: #FFEBD1;
+    box-shadow: 0 6px 0 #E5C4AD;
+}
+
+.menu-button.back:active {
+    box-shadow: 0 0 0 #E5C4AD;
+}
+
+.menu-button.dev {
+    background-color: #E2B4BD;
+    box-shadow: 0 4px 0 #C29AA3;
+}
+
+.menu-button.dev:hover {
+    background-color: #F2C4CD;
+    box-shadow: 0 6px 0 #C29AA3;
+}
+
+.menu-button.dev:active {
+    box-shadow: 0 0 0 #C29AA3;
+}
+
+.menu-button.person {
+    background-color: #FFD1DC;
+    box-shadow: 0 4px 0 #E5B7C2;
+}
+
+.menu-button.person:hover {
+    background-color: #FFE1EC;
+    box-shadow: 0 6px 0 #E5B7C2;
+}
+
+.menu-button.person:active {
+    box-shadow: 0 0 0 #E5B7C2;
+}
+
+.menu-screen {
+    display: none;
+}
+
+.menu-screen.active {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.home-status {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: #FFD1DC;
+}
+
+.partner-name {
+    color: #B5EAD7;
+    font-weight: bold;
+}
+
+.menu-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: #FFDAC1;
+}
+
+.small-button {
+    padding: 0.3rem 0.5rem;
+    background-color: #C7CEEA;
+    color: #444;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 0.5rem;
+}
+
+.small-button:hover {
+    background-color: #D7DEF5;
+}
+
+/* Code Display and Copy Button */
+.code-display {
+    background: #fff;
+    color: #333;
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: none;
+    position: relative;
+}
+
+#home-code, #invite-code {
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0 0.5rem;
+    text-shadow: none;
+}
+
+.copy-container {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.copy-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.copy-button:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.copy-button .pixel-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    filter: brightness(0);
+}
+
+.copy-feedback {
+    font-size: 0.7rem;
+    margin-left: 6px;
+    opacity: 0;
+    pointer-events: none;
+    color: #333;
+    transition: opacity 0.5s ease;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.copy-button.copied + .copy-feedback {
+    opacity: 1;
+}
+
+.copy-button.copied {
+    background-color: rgba(100, 255, 100, 0.2);
+}
+
+.code-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#code-input-area {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+#home-code-input {
+    padding: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.dev-section {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.dev-section-title {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: #E2B4BD;
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.loading-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #FFD1DC;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 209, 220, 0.3);
+    border-radius: 50%;
+    border-top-color: #FFD1DC;
+    margin: 1.5rem auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loading-message {
+    font-size: 0.8rem;
+    color: #FFD1DC;
+    margin-top: 1rem;
+}
+
+/* Confirmation Dialog */
+.confirmation-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.confirmation-dialog.active {
+    display: flex;
+}
+
+.confirmation-dialog > div {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #FFD1DC;
+    max-width: 500px;
+    width: 90%;
+}
+
+.confirmation-dialog h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #FFD1DC;
+}
+
+.confirmation-dialog p {
+    font-size: 0.8rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#join-success-modal h3 {
+    color: #64ff64;
+}
+
+#join-failure-modal h3 {
+    color: #ff6464;
+}
+
+/* Dev Panel */
+.dev-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #E2B4BD;
+    border-radius: 8px;
+    width: 250px;
+    z-index: 100;
+    font-size: 0.7rem;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dev-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: rgba(226, 180, 189, 0.3);
+    border-bottom: 1px solid #E2B4BD;
+    border-radius: 6px 6px 0 0;
+}
+
+.dev-panel-header h3 {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #E2B4BD;
+}
+
+.dev-toggle {
+    background: none;
+    border: none;
+    color: #E2B4BD;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.dev-panel-content {
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.dev-panel.collapsed .dev-panel-content {
+    display: none;
+}
+
+.dev-section {
+    margin-bottom: 12px;
+}
+
+.dev-section h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.7rem;
+    color: #E2B4BD;
+}
+
+.dev-button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #E2B4BD;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: 0 4px 4px 0;
+    font-size: 0.6rem;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.dev-button:hover {
+    background-color: #444;
+}
+
+.dev-button:active {
+    background-color: #555;
+}
+
+/* Person Settings Menu - Reduce space between input and save button */
+#person-settings-menu input {
+    margin-bottom: 2px; /* Reduced from 5px to 2px for minimal spacing */
+}
+
+/* Remove the save confirmation specific styles since we're using the existing confirmation dialog structure */
+
+/* Co-op Menu Button Colors */
+#invite-partner {
+    background-color: #FFB7B2; /* Pink color like play buttons */
+    box-shadow: 0 4px 0 #E5A29E;
+}
+
+#invite-partner:hover {
+    background-color: #FFC7C2;
+    box-shadow: 0 6px 0 #E5A29E;
+}
+
+#invite-partner:active {
+    box-shadow: 0 0 0 #E5A29E;
+}
+
+#join-home {
+    background-color: #B5EAD7; /* Green color like settings buttons */
+    box-shadow: 0 4px 0 #95C8B2;
+}
+
+#join-home:hover {
+    background-color: #C7F0E2;
+    box-shadow: 0 6px 0 #95C8B2;
+}
+
+#join-home:active {
+    box-shadow: 0 0 0 #95C8B2;
+}
+
+/* Error and Success Messages */
+.error-message, .success-message {
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    font-size: 0.7rem;
+    display: none;
+}
+
+.error-message.active, .success-message.active {
+    display: block;
+}
+
+.error-message {
+    background-color: rgba(255, 100, 100, 0.2);
+    border: 1px solid #ff6464;
+    color: #ff6464;
+}
+
+.success-message {
+    background-color: rgba(100, 255, 100, 0.2);
+    border: 1px solid #64ff64;
+    color: #64ff64;
+} 

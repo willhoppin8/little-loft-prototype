@@ -1,0 +1,448 @@
+/* Common styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: url('../assets/background.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #FFD1DC;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* For sub-menus, we want a smaller title */
+.menu-screen:not(#main-menu) .title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.6rem;
+    color: #FFD1DC;
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-text {
+    color: #FFD1DC;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.loading-dots::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+    display: inline-block;
+    width: 1.5em;
+    text-align: left;
+}
+
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
+
+/* Confirmation dialog */
+.confirmation-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    display: none;
+    z-index: 101;
+}
+
+.confirmation-dialog.active {
+    display: block;
+}
+
+.confirmation-dialog h3 {
+    color: #FFD1DC;
+    margin-bottom: 1rem;
+}
+
+.confirmation-dialog p {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
+
+.confirmation-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.confirmation-buttons button {
+    padding: 0.5rem 1rem;
+}
+
+/* Dev controls */
+.dev-toggle {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFD1DC;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 3px;
+    font-size: 0.6rem;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    z-index: 999;
+}
+
+.dev-controls {
+    position: fixed;
+    bottom: 40px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 0.6rem;
+    color: #FFD1DC;
+    z-index: 1000;
+    display: none;
+}
+
+.dev-controls.active {
+    display: block;
+}
+
+.dev-controls h4 {
+    margin-bottom: 1rem;
+}
+
+.dev-controls label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Error and success messages */
+.error-message {
+    color: #FFB7B2;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+.success-message {
+    color: #B5EAD7;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.success-message.active {
+    display: block;
+}
+
+/* Join code input */
+#join-code, #person-name {
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #333;
+}
+
+/* Code display */
+.code-display {
+    background: #fff;
+    color: #333;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.menu-subtitle.warning {
+    color: #FFB7B2;
+}
+
+/* Game screen styles */
+.game-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2C3E50;
+    overflow: hidden;
+}
+
+.game-screen.active {
+    display: block;
+}
+
+.room {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #34495E;
+    image-rendering: pixelated;
+}
+
+.room::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 8px solid #FFD1DC;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* HUD styles */
+.hud {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 5px;
+    color: #FFD1DC;
+    font-size: 0.8rem;
+    z-index: 2;
+}
+
+.currency {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.joy-meter {
+    width: 100px;
+    height: 10px;
+    background: #444;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.joy-fill {
+    width: 70%;
+    height: 100%;
+    background: #FFB7B2;
+    transition: width 0.3s ease;
+}
+
+/* Back button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #FFB7B2;
+    color: #444;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    background-color: #FFC7C2;
+}
+
+.back-button:active {
+    transform: translateY(0);
+}
+
+/* Shop button */
+.shop-button {
+    position: fixed;
+    top: 20px;
+    left: 150px;
+    background-color: #B5EAD7;
+    color: #444;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.shop-button:hover {
+    transform: translateY(-2px);
+    background-color: #C7F0E2;
+}
+
+.shop-button:active {
+    transform: translateY(0);
+}
+
+/* Furniture styles */
+.furniture {
+    position: absolute;
+    cursor: move;
+    image-rendering: pixelated;
+    z-index: 1;
+}
+
+.furniture img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.furniture.selected {
+    outline: 2px solid #FFD1DC;
+    z-index: 2;
+}
+
+/* Shop panel */
+.shop-panel {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    transition: right 0.3s ease;
+    padding: 1rem;
+    color: #FFD1DC;
+    z-index: 3;
+}
+
+.shop-panel.active {
+    right: 0;
+}
+
+.shop-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+}
+
+.shop-item:hover {
+    background: rgba(255, 209, 220, 0.1);
+}
+
+.shop-item img {
+    width: 50px;
+    height: 50px;
+    image-rendering: pixelated;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD1DC;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    display: none;
+    z-index: 3;
+}
+
+.notification.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+} 

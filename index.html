@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Loft</title>
+    <!-- Favicon -->
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="public/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="public/icons/apple-touch-icon.png">
+    <link rel="manifest" href="public/site.webmanifest">
+    <meta name="theme-color" content="#000000">
+    <!-- Fonts and Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/audio.css">
+    <link rel="stylesheet" href="css/icons.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="menu-screen active">
+            <h1 class="title">Little Loft</h1>
+            <button id="enter-home" class="menu-button play"><span class="pixel-icon" data-icon="home"></span> Enter Loft</button>
+            <button id="settings-button" class="menu-button settings"><span class="pixel-icon" data-icon="settings"></span> Settings</button>
+        </div>
+
+        <!-- Settings Menu -->
+        <div id="settings-menu" class="menu-screen">
+            <h1 class="title">Settings</h1>
+            <button id="person-button" class="menu-button person"><span class="pixel-icon" data-icon="user"></span> Character</button>
+            <button id="coop-button" class="menu-button coop"><span class="pixel-icon" data-icon="users"></span> Co-Op</button>
+            <button id="audio-settings-button" class="menu-button settings"><span class="pixel-icon" data-icon="volume"></span> Audio</button>
+            <button id="back-from-settings" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+        </div>
+
+        <!-- Person Settings Menu -->
+        <div id="person-settings-menu" class="menu-screen">
+            <h1 class="title">Character</h1>
+            <div class="menu-subtitle">
+                Change your name:
+            </div>
+            <input type="text" placeholder="Your Name" id="person-name" maxlength="15">
+            <button id="save-person" class="menu-button play"><span class="pixel-icon" data-icon="save"></span> Save</button>
+            <button id="back-from-person" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+        </div>
+
+        <!-- Audio Settings Menu -->
+        <div id="audio-settings-menu" class="menu-screen">
+            <h1 class="title">Audio</h1>
+            
+            <div class="slider-container">
+                <span class="slider-label">Master Volume</span>
+                <input type="range" min="0" max="100" value="80" class="slider" id="master-volume">
+                <div class="volume-value">80%</div>
+            </div>
+            
+            <div class="slider-container">
+                <span class="slider-label">Music Volume</span>
+                <input type="range" min="0" max="100" value="70" class="slider" id="music-volume">
+                <div class="volume-value">70%</div>
+            </div>
+            
+            <div class="slider-container">
+                <span class="slider-label">Sound Effects</span>
+                <input type="range" min="0" max="100" value="90" class="slider" id="sfx-volume">
+                <div class="volume-value">90%</div>
+            </div>
+            
+            <div class="toggle-container">
+                <span class="toggle-label">Mute All</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="mute-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <button id="back-from-audio" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+        </div>
+
+        <!-- Co-op Menu -->
+        <div id="coop-menu" class="menu-screen">
+            <h1 class="title">Co-Op</h1>
+            <div id="coop-status" class="menu-subtitle">
+                You are currently in a solo loft.
+            </div>
+            <button id="invite-partner" class="menu-button coop"><span class="pixel-icon" data-icon="mail"></span> Invite Partner</button>
+            <button id="join-home" class="menu-button coop"><span class="pixel-icon" data-icon="login"></span> Join Someone's Loft</button>
+            <button id="leave-home" class="menu-button coop" style="display: none;"><span class="pixel-icon" data-icon="logout"></span> Leave Current Loft</button>
+            <button id="back-from-coop" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+        </div>
+
+        <!-- Invite Partner Menu -->
+        <div id="invite-menu" class="menu-screen">
+            <h1 class="title">Invite Partner</h1>
+            <div class="menu-subtitle">
+                Share this code with your partner:
+            </div>
+            <div class="code-display">
+                <span id="invite-code">DWELL-1234</span>
+                <div class="copy-container">
+                    <button id="copy-code" class="copy-button" title="Copy code">
+                        <span class="pixel-icon" data-icon="copy"></span>
+                    </button>
+                    <span class="copy-feedback">Copied!</span>
+                </div>
+            </div>
+            <button id="back-from-invite" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+        </div>
+
+        <!-- Join Home Menu -->
+        <div id="join-menu" class="menu-screen">
+            <h1 class="title">Join a Loft</h1>
+            <div class="menu-subtitle">
+                Enter your partner's code:
+            </div>
+            <input type="text" placeholder="DWELL-XXXX" id="join-code">
+            <div class="error-message" id="join-error">
+                Invalid code format. Please use DWELL-XXXX format.
+            </div>
+            <button id="join-submit" class="menu-button play"><span class="pixel-icon" data-icon="login"></span> Join Loft</button>
+            <button id="back-from-join" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+        </div>
+    </div>
+
+
+    <div class="loading-overlay">
+        <div class="loading-text">
+            <span id="loading-message">Connecting</span>
+            <span class="loading-dots"></span>
+        </div>
+    </div>
+
+    <div class="confirmation-dialog" id="leave-confirmation">
+        <div>
+            <h3>Leave Loft?</h3>
+            <p>
+                Are you sure you want to leave this loft?<br>
+                Both you and your partner will need to start over.
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button back" id="cancel-leave"><span class="pixel-icon" data-icon="x"></span> Cancel</button>
+                <button class="menu-button play" id="confirm-leave"><span class="pixel-icon" data-icon="logout"></span> Leave Loft</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Confirmation Modal -->
+    <div class="confirmation-dialog" id="join-confirmation">
+        <div>
+            <h3>Join This Loft?</h3>
+            <p>
+                Warning: Joining will replace your solo loft!<br>
+                If you leave their loft, you'll have to restart!<br>
+                Are you sure?
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button back" id="cancel-join"><span class="pixel-icon" data-icon="x"></span> Cancel</button>
+                <button class="menu-button play" id="confirm-join"><span class="pixel-icon" data-icon="login"></span> Join Loft</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Full Error Modal -->
+    <div class="confirmation-dialog" id="home-full-error">
+        <div>
+            <h3>Loft Already Full</h3>
+            <p>
+                This loft already has a partner.<br>
+                Please try a different code.
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="home-full-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Error Modal -->
+    <div class="confirmation-dialog" id="connection-error">
+        <div>
+            <h3>Connection Error</h3>
+            <p>
+                Unable to connect to this loft.<br>
+                Please check the code and try again.
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="connection-error-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Confirmation Modal -->
+    <div class="confirmation-dialog" id="save-confirmation">
+        <div>
+            <h3>Name Saved!</h3>
+            <p>
+                Your character name has been updated.
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="save-confirmation-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="dev-toggle" id="toggle-dev-controls"><span class="pixel-icon" data-icon="tools"></span> Dev Controls</button>
+    <div class="dev-controls" id="dev-controls">
+        <h4>Developer Controls</h4>
+        <label>
+            <input type="checkbox" id="dev-has-partner"> Has Partner
+        </label>
+        <label>
+            <input type="checkbox" id="dev-is-host"> Is Host
+        </label>
+        <label>
+            <input type="checkbox" id="dev-connection-error"> Simulate Connection Error
+        </label>
+        <label>
+            <input type="checkbox" id="dev-home-full"> Simulate Loft Full
+        </label>
+        <label>
+            <input type="checkbox" id="dev-join-success"> Force Join Success
+        </label>
+        <label>
+            <input type="checkbox" id="dev-slow-connection"> Simulate Slow Connection
+        </label>
+    </div>
+
+    <!-- Join Success Modal -->
+    <div class="confirmation-dialog" id="join-success-modal">
+        <div>
+            <h3>Connection Successful!</h3>
+            <p>
+                You have successfully joined the loft.<br>
+                Entering shared loft now...
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="join-success-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Failure Modal -->
+    <div class="confirmation-dialog" id="join-failure-modal">
+        <div>
+            <h3>Connection Failed</h3>
+            <p>
+                Unable to join the loft.<br>
+                Please check the code and try again.
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="join-failure-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html> 
