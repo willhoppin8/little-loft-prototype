@@ -105,6 +105,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide main menu and show loft view
             mainMenu.classList.remove('active');
             document.getElementById('loft-view').classList.add('active');
+            
+            // Animate character entrance
+            animateCharacterEntrance();
         } else {
             // Show neighborhood selection screen
             mainMenu.classList.remove('active');
@@ -115,6 +118,85 @@ document.addEventListener('DOMContentLoaded', function() {
             updateNeighborhoodDisplay();
         }
     });
+    
+    // Function to animate character entrance
+    function animateCharacterEntrance() {
+        const character = document.getElementById('loft-character');
+        const container = document.getElementById('character-container');
+        const catContainer = document.getElementById('cat-container');
+        
+        // Reset position - make it start from further below for a more dramatic entrance
+        container.style.transform = 'translateX(-50%) translateX(-15vh) translateY(50px)';
+        container.style.opacity = '0';
+        
+        // Reset cat position - start off-screen to the right
+        catContainer.style.transform = 'translateX(50%) translateX(15vh) translateX(100px)';
+        catContainer.style.opacity = '0';
+        
+        // Animate character entrance
+        setTimeout(() => {
+            container.style.transition = 'transform 1s ease-out, opacity 0.8s ease-in';
+            container.style.transform = 'translateX(-50%) translateX(-15vh) translateY(0)';
+            container.style.opacity = '1';
+            
+            // Animate cat entrance after character appears
+            setTimeout(() => {
+                catContainer.style.transition = 'transform 0.8s ease-out, opacity 0.6s ease-in';
+                catContainer.style.transform = 'translateX(50%) translateX(15vh)';
+                catContainer.style.opacity = '1';
+                
+                // Start cat idle animations
+                startCatIdleAnimations();
+            }, 800);
+        }, 500);
+    }
+    
+    // Function to make the cat move occasionally
+    function startCatIdleAnimations() {
+        const catContainer = document.getElementById('cat-container');
+        
+        // Set up random movements for the cat
+        function catRandomMovement() {
+            // Only animate if the loft view is active
+            if (!document.getElementById('loft-view').classList.contains('active')) {
+                return;
+            }
+            
+            // Random movement type
+            const movementType = Math.floor(Math.random() * 3);
+            
+            // Reset transitions
+            catContainer.style.transition = 'transform 0.5s ease-in-out';
+            
+            switch (movementType) {
+                case 0: // Small hop
+                    catContainer.style.transform = 'translateX(50%) translateX(15vh) translateY(-5px)';
+                    setTimeout(() => {
+                        catContainer.style.transform = 'translateX(50%) translateX(15vh)';
+                    }, 300);
+                    break;
+                case 1: // Move slightly left
+                    catContainer.style.transform = 'translateX(50%) translateX(15vh) translateX(-10px)';
+                    setTimeout(() => {
+                        catContainer.style.transform = 'translateX(50%) translateX(15vh)';
+                    }, 500);
+                    break;
+                case 2: // Move slightly right
+                    catContainer.style.transform = 'translateX(50%) translateX(15vh) translateX(10px)';
+                    setTimeout(() => {
+                        catContainer.style.transform = 'translateX(50%) translateX(15vh)';
+                    }, 500);
+                    break;
+            }
+            
+            // Schedule next movement
+            const nextMovementDelay = 3000 + Math.random() * 5000; // 3-8 seconds
+            setTimeout(catRandomMovement, nextMovementDelay);
+        }
+        
+        // Start the first movement after a delay
+        setTimeout(catRandomMovement, 2000);
+    }
     
     // Function to update the loft header with user's name and neighborhood
     function updateLoftHeader() {
@@ -152,6 +234,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLoftHeader();
         
         loftView.classList.add('active');
+        
+        // Animate character entrance
+        animateCharacterEntrance();
     });
     
     // Back to menu button
