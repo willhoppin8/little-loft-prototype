@@ -683,12 +683,36 @@
     justify-content: center;
     align-items: flex-start;
     z-index: 2000;
-    padding-top: 80px;
+    padding-top: 160px;
     overflow: hidden;
 }
 
 .fullscreen-view.active {
     display: flex;
+}
+
+/* Loft header styles */
+.loft-header {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 20;
+    width: 100%;
+    max-width: 600px;
+}
+
+.loft-title {
+    font-size: 1.8rem;
+    color: #333;
+    text-shadow: 2px 2px 0px rgba(255, 209, 220, 0.5);
+    background-color: transparent;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    display: inline-block;
+    font-weight: bold;
 }
 
 .neighborhood-window {
@@ -795,6 +819,83 @@
 
 .money-value {
     color: #B5EAD7;
+}
+
+/* Help Button */
+.help-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px auto 0;
+    transition: all 0.2s;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.help-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.help-button:active {
+    transform: scale(0.95);
+}
+
+/* Currency color classes for the help modal */
+.joy-color {
+    color: #FFB7B2;
+    font-weight: bold;
+}
+
+.money-color {
+    color: #B5EAD7;
+    font-weight: bold;
+}
+
+/* New Currency Help Modal Styles */
+#new-currency-help-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+#new-currency-help-modal > div {
+    background-color: #222;
+    border: 2px solid #444;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    z-index: 2001;
+}
+
+#new-currency-help-modal h3 {
+    margin-top: 0;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #64ff64;
+}
+
+#new-currency-help-modal p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: #ccc;
+    font-size: 1.1em;
 }
 
 #back-to-menu {

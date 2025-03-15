@@ -304,6 +304,9 @@
 
     <!-- Loft View Screen -->
     <div id="loft-view" class="fullscreen-view">
+        <div class="loft-header">
+            <h2 class="loft-title"><span id="user-name">Your</span>'s <span id="neighborhood-display-name">Loft</span></h2>
+        </div>
         <div class="neighborhood-window">
             <img id="neighborhood-view" src="" alt="View from your loft">
         </div>
@@ -324,13 +327,13 @@
                 </div>
                 <div class="currency-value money-value">500</div>
             </div>
-            <button id="currency-help-button" class="help-button">?</button>
+            <button id="new-currency-help-btn" class="help-button">?</button>
         </div>
         <button id="back-to-menu" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
     </div>
 
-    <!-- Currency Help Modal -->
-    <div class="confirmation-dialog" id="currency-help-modal">
+    <!-- New Currency Help Modal -->
+    <div class="confirmation-dialog" id="new-currency-help-modal">
         <div>
             <h3>How Resources Work</h3>
             <p>
@@ -339,7 +342,7 @@
                 Use <span class="money-color">Money</span> to buy furniture and decorations for your loft!
             </p>
             <div class="confirmation-buttons">
-                <button class="menu-button play" id="currency-help-ok">Got it!</button>
+                <button class="menu-button play" id="new-currency-help-ok">Got it!</button>
             </div>
         </div>
     </div>

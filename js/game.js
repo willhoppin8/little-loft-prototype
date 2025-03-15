@@ -76,19 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1500);
     });
     
-    // Neighborhood success modal OK button
-    neighborhoodSuccessOk.addEventListener('click', () => {
-        hideConfirmation(neighborhoodSuccessModal);
-        
-        // Show the loft view
-        neighborhoodSelect.classList.remove('active');
-        const loftView = document.getElementById('loft-view');
-        const neighborhoodView = document.getElementById('neighborhood-view');
-        const selectedNeighborhood = localStorage.getItem('selectedNeighborhood');
-        neighborhoodView.src = `assets/neighborhoods/${selectedNeighborhood}.png`;
-        loftView.classList.add('active');
-    });
-    
     // Enter loft button
     document.getElementById('enter-home').addEventListener('click', () => {
         const hasHome = localStorage.getItem('hasHome') === 'true';
@@ -112,6 +99,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.joy-value').textContent = localStorage.getItem('joyAmount');
             document.querySelector('.money-value').textContent = localStorage.getItem('moneyAmount');
             
+            // Update loft header with user's name and neighborhood
+            updateLoftHeader();
+            
             // Hide main menu and show loft view
             mainMenu.classList.remove('active');
             document.getElementById('loft-view').classList.add('active');
@@ -126,10 +116,65 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Function to update the loft header with user's name and neighborhood
+    function updateLoftHeader() {
+        // Get user's name from localStorage or use default
+        const userName = localStorage.getItem('personName') || 'Your';
+        document.getElementById('user-name').textContent = userName;
+        
+        // Get neighborhood name and format it for display
+        const selectedNeighborhood = localStorage.getItem('selectedNeighborhood');
+        let displayName = 'Loft';
+        
+        // Find the neighborhood display name
+        for (const neighborhood of neighborhoods) {
+            if (neighborhood.name === selectedNeighborhood) {
+                displayName = neighborhood.displayName + ' Loft';
+                break;
+            }
+        }
+        
+        document.getElementById('neighborhood-display-name').textContent = displayName;
+    }
+    
+    // Neighborhood success modal OK button
+    neighborhoodSuccessOk.addEventListener('click', () => {
+        hideConfirmation(neighborhoodSuccessModal);
+        
+        // Show the loft view
+        neighborhoodSelect.classList.remove('active');
+        const loftView = document.getElementById('loft-view');
+        const neighborhoodView = document.getElementById('neighborhood-view');
+        const selectedNeighborhood = localStorage.getItem('selectedNeighborhood');
+        neighborhoodView.src = `assets/neighborhoods/${selectedNeighborhood}.png`;
+        
+        // Update loft header
+        updateLoftHeader();
+        
+        loftView.classList.add('active');
+    });
+    
     // Back to menu button
     document.getElementById('back-to-menu').addEventListener('click', () => {
         document.getElementById('loft-view').classList.remove('active');
         mainMenu.classList.add('active');
+    });
+    
+    // New Currency help button implementation
+    const newHelpBtn = document.getElementById('new-currency-help-btn');
+    const newHelpModal = document.getElementById('new-currency-help-modal');
+    const newHelpOkBtn = document.getElementById('new-currency-help-ok');
+    
+    // Direct event handler to show the modal
+    newHelpBtn.addEventListener('click', function() {
+        // Show the modal directly with DOM manipulation
+        newHelpModal.style.display = 'flex';
+    });
+    
+    // Direct event handler to hide the modal
+    newHelpOkBtn.addEventListener('click', function() {
+        // Hide the modal directly with DOM manipulation
+        newHelpModal.style.display = 'none';
     });
     
     // Main menu buttons
