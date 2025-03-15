@@ -30,6 +30,22 @@
             <button id="settings-button" class="menu-button settings"><span class="pixel-icon" data-icon="settings"></span> Settings</button>
         </div>
 
+        <!-- Neighborhood Selection Screen -->
+        <div id="neighborhood-select" class="menu-screen">
+            <h1 class="title">Choose Your Neighborhood</h1>
+            <div class="neighborhood-frame">
+                <div class="neighborhood-navigation">
+                    <button id="prev-neighborhood" class="nav-arrow"><span class="pixel-icon" data-icon="arrow-left"></span></button>
+                    <div class="neighborhood-image-container">
+                        <img id="neighborhood-image" src="assets/neighborhoods/chelsea.png" alt="Neighborhood">
+                        <div class="neighborhood-name" id="neighborhood-name">Chelsea</div>
+                    </div>
+                    <button id="next-neighborhood" class="nav-arrow"><span class="pixel-icon" data-icon="arrow-right"></span></button>
+                </div>
+                <button id="confirm-neighborhood" class="menu-button settings"><span class="pixel-icon" data-icon="check"></span> Go to My Loft</button>
+            </div>
+        </div>
+
         <!-- Settings Menu -->
         <div id="settings-menu" class="menu-screen">
             <h1 class="title">Settings</h1>
@@ -228,6 +244,7 @@
         <label>
             <input type="checkbox" id="dev-slow-connection"> Simulate Slow Connection
         </label>
+        <button id="reset-neighborhood" class="dev-button">Reset Neighborhood</button>
     </div>
 
     <!-- Join Success Modal -->
@@ -235,8 +252,7 @@
         <div>
             <h3>Connection Successful!</h3>
             <p>
-                You have successfully joined the loft.<br>
-                Entering shared loft now...
+                You have successfully joined the loft!<br>
             </p>
             <div class="confirmation-buttons">
                 <button class="menu-button play" id="join-success-ok">OK</button>
@@ -254,6 +270,76 @@
             </p>
             <div class="confirmation-buttons">
                 <button class="menu-button play" id="join-failure-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leave Success Modal -->
+    <div class="confirmation-dialog" id="leave-success-modal">
+        <div>
+            <h3>Left Loft Successfully</h3>
+            <p>
+                You have successfully left the shared loft.<br>
+                You are now back in your solo loft.
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="leave-success-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Neighborhood Selection Success Modal -->
+    <div class="confirmation-dialog" id="neighborhood-success-modal">
+        <div>
+            <h3>Welcome to Your New Loft!</h3>
+            <p>
+                You've created your loft in <span id="selected-neighborhood-name"></span>.<br>
+                Let's check it out!
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="neighborhood-success-ok">Enter Loft</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loft View Screen -->
+    <div id="loft-view" class="fullscreen-view">
+        <div class="neighborhood-window">
+            <img id="neighborhood-view" src="" alt="View from your loft">
+        </div>
+        <div class="loft-floor"></div>
+        <div class="currency-menu">
+            <h3>Resources</h3>
+            <div class="currency-item">
+                <div class="currency-label">
+                    <div class="currency-icon joy-icon">♥</div>
+                    Joy
+                </div>
+                <div class="currency-value joy-value">100</div>
+            </div>
+            <div class="currency-item">
+                <div class="currency-label">
+                    <div class="currency-icon money-icon">$</div>
+                    Money
+                </div>
+                <div class="currency-value money-value">500</div>
+            </div>
+            <button id="currency-help-button" class="help-button">?</button>
+        </div>
+        <button id="back-to-menu" class="menu-button back"><span class="pixel-icon" data-icon="arrow-left"></span> Back</button>
+    </div>
+
+    <!-- Currency Help Modal -->
+    <div class="confirmation-dialog" id="currency-help-modal">
+        <div>
+            <h3>How Resources Work</h3>
+            <p>
+                <span class="joy-color">Joy</span> is earned by taking care of your loft and spending time in it.<br><br>
+                When you log off to work your real-life job, your <span class="joy-color">Joy</span> slowly converts into <span class="money-color">Money</span>.<br><br>
+                Use <span class="money-color">Money</span> to buy furniture and decorations for your loft!
+            </p>
+            <div class="confirmation-buttons">
+                <button class="menu-button play" id="currency-help-ok">Got it!</button>
             </div>
         </div>
     </div>

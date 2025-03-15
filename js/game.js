@@ -7,10 +7,129 @@ document.addEventListener('DOMContentLoaded', function() {
     const coopMenu = document.getElementById('coop-menu');
     const inviteMenu = document.getElementById('invite-menu');
     const joinMenu = document.getElementById('join-menu');
+    const neighborhoodSelect = document.getElementById('neighborhood-select');
+    
+    // Neighborhood selection functionality
+    const neighborhoods = [
+        { name: "bronx", displayName: "Bronx" },
+        { name: "chelsea", displayName: "Chelsea" },
+        { name: "chinatown", displayName: "Chinatown" },
+        { name: "eastvillage", displayName: "East Village" },
+        { name: "harlem", displayName: "Harlem" },
+        { name: "prospectheights", displayName: "Prospect Heights" },
+        { name: "queens", displayName: "Queens" },
+        { name: "soho", displayName: "SoHo" },
+        { name: "statenisland", displayName: "Staten Island" },
+        { name: "uppereast", displayName: "Upper East Side" },
+        { name: "upperwest", displayName: "Upper West Side" },
+        { name: "westvillage", displayName: "West Village" }
+    ];
+    
+    let currentNeighborhoodIndex = 0;
+    const neighborhoodImage = document.getElementById('neighborhood-image');
+    const neighborhoodName = document.getElementById('neighborhood-name');
+    const prevNeighborhood = document.getElementById('prev-neighborhood');
+    const nextNeighborhood = document.getElementById('next-neighborhood');
+    const confirmNeighborhood = document.getElementById('confirm-neighborhood');
+    const neighborhoodSuccessModal = document.getElementById('neighborhood-success-modal');
+    const neighborhoodSuccessOk = document.getElementById('neighborhood-success-ok');
+    const selectedNeighborhoodName = document.getElementById('selected-neighborhood-name');
+    
+    // Function to update the displayed neighborhood
+    function updateNeighborhoodDisplay() {
+        const neighborhood = neighborhoods[currentNeighborhoodIndex];
+        neighborhoodImage.src = `assets/neighborhoods/${neighborhood.name}.png`;
+        neighborhoodName.textContent = neighborhood.displayName;
+    }
+    
+    // Navigation buttons
+    prevNeighborhood.addEventListener('click', () => {
+        currentNeighborhoodIndex = (currentNeighborhoodIndex - 1 + neighborhoods.length) % neighborhoods.length;
+        updateNeighborhoodDisplay();
+    });
+    
+    nextNeighborhood.addEventListener('click', () => {
+        currentNeighborhoodIndex = (currentNeighborhoodIndex + 1) % neighborhoods.length;
+        updateNeighborhoodDisplay();
+    });
+    
+    // Confirm neighborhood selection
+    confirmNeighborhood.addEventListener('click', () => {
+        const selectedNeighborhood = neighborhoods[currentNeighborhoodIndex];
+        
+        // Save the selected neighborhood to localStorage
+        localStorage.setItem('selectedNeighborhood', selectedNeighborhood.name);
+        localStorage.setItem('hasHome', 'true');
+        
+        // Show loading screen
+        showLoading('Creating your loft...');
+        
+        // Simulate loading delay
+        setTimeout(() => {
+            hideLoading();
+            
+            // Update success modal with neighborhood name
+            selectedNeighborhoodName.textContent = selectedNeighborhood.displayName;
+            
+            // Show success modal
+            showConfirmation(neighborhoodSuccessModal);
+        }, 1500);
+    });
+    
+    // Neighborhood success modal OK button
+    neighborhoodSuccessOk.addEventListener('click', () => {
+        hideConfirmation(neighborhoodSuccessModal);
+        
+        // Show the loft view
+        neighborhoodSelect.classList.remove('active');
+        const loftView = document.getElementById('loft-view');
+        const neighborhoodView = document.getElementById('neighborhood-view');
+        const selectedNeighborhood = localStorage.getItem('selectedNeighborhood');
+        neighborhoodView.src = `assets/neighborhoods/${selectedNeighborhood}.png`;
+        loftView.classList.add('active');
+    });
     
     // Enter loft button
     document.getElementById('enter-home').addEventListener('click', () => {
-        alert('Enter Loft functionality will be implemented in the future!');
+        const hasHome = localStorage.getItem('hasHome') === 'true';
+        
+        if (hasHome) {
+            // Get the selected neighborhood
+            const selectedNeighborhood = localStorage.getItem('selectedNeighborhood');
+            
+            // Update the neighborhood view
+            document.getElementById('neighborhood-view').src = `assets/neighborhoods/${selectedNeighborhood}.png`;
+            
+            // Initialize currency values if not already set
+            if (!localStorage.getItem('joyAmount')) {
+                localStorage.setItem('joyAmount', '100');
+            }
+            if (!localStorage.getItem('moneyAmount')) {
+                localStorage.setItem('moneyAmount', '500');
+            }
+            
+            // Update currency display
+            document.querySelector('.joy-value').textContent = localStorage.getItem('joyAmount');
+            document.querySelector('.money-value').textContent = localStorage.getItem('moneyAmount');
+            
+            // Hide main menu and show loft view
+            mainMenu.classList.remove('active');
+            document.getElementById('loft-view').classList.add('active');
+        } else {
+            // Show neighborhood selection screen
+            mainMenu.classList.remove('active');
+            neighborhoodSelect.classList.add('active');
+            
+            // Initialize neighborhood display
+            currentNeighborhoodIndex = 0;
+            updateNeighborhoodDisplay();
+        }
+    });
+    
+    // Back to menu button
+    document.getElementById('back-to-menu').addEventListener('click', () => {
+        document.getElementById('loft-view').classList.remove('active');
+        mainMenu.classList.add('active');
     });
     
     // Main menu buttons
@@ -59,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('personName', personName);
             // Show custom save confirmation
             showConfirmation(saveConfirmation);
-        } else {
+            } else {
             personSettingsMenu.classList.remove('active');
             settingsMenu.classList.add('active');
         }
@@ -138,9 +257,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const devHomeFull = document.getElementById('dev-home-full');
     const devJoinSuccess = document.getElementById('dev-join-success');
     const devSlowConnection = document.getElementById('dev-slow-connection');
+    const resetNeighborhood = document.getElementById('reset-neighborhood');
 
     toggleDevControls.addEventListener('click', () => {
         devControls.classList.toggle('active');
+    });
+    
+    // Reset neighborhood button
+    resetNeighborhood.addEventListener('click', () => {
+        localStorage.removeItem('hasHome');
+        localStorage.removeItem('selectedNeighborhood');
+        localStorage.removeItem('joyAmount');
+        localStorage.removeItem('moneyAmount');
+        alert('Neighborhood selection has been reset. Click "Enter Loft" to choose a new neighborhood.');
     });
 
     // Loading overlay functionality
